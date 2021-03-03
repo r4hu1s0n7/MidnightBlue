@@ -1,0 +1,152 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+	<head>
+		<style>
+			.ui-autocomplete { max-height: 200px; overflow-y: scroll; overflow-x: hidden;}
+		</style>
+		<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+	</head>
+{% include 'add-ones/headtag.html' %}
+<body>
+<!--preloading-->
+<div id="preloader">
+    <img class="logo" src="{% static 'images/logo1.svg' %}" alt="" width="119" height="58">
+    <div id="status">
+        <span></span>
+        <span></span>
+    </div>
+</div>
+<!--end of preloading-->
+
+<!--login form popup-->
+<!-- {% include 'add-ones/login.html' %} -->
+<!--end of login form popup-->
+
+<!--signup form popup-->
+<!-- {% include 'add-ones/signup.html' %} -->
+<!--end of signup form popup-->
+
+<!-- BEGIN | Header -->
+<header class="ht-header full-width-hd">
+	<div class="row">
+		<nav id="mainNav" class="navbar navbar-default navbar-custom">
+			<!-- Brand and toggle get grouped for better mobile display -->
+			<div class="navbar-header logo">
+			    <div class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+				    <span class="sr-only">Toggle navigation</span>
+				    <div id="nav-icon1">
+						<span></span>
+						<span></span>
+						<span></span>
+					</div>
+			    </div>
+			    <a href="/"><img class="logo" src="{% static 'images/logo1.svg' %}" alt="" width="119" height="58"></a>
+		    </div>
+			<!-- Collect the nav links, forms, and other content for toggling -->
+			<div class="collapse navbar-collapse flex-parent" id="bs-example-navbar-collapse-1">
+				<ul class="nav navbar-nav flex-child-menu menu-left">
+					<li class="hidden">
+						<a href="#page-top"></a>
+					</li>
+					<!-- <li><a href="index">Home</a></li> -->
+
+					<li><a href="search">Search</a></li>
+
+					<li class="dropdown first">
+						<a class="btn btn-default dropdown-toggle lv1" data-toggle="dropdown" data-hover="dropdown">
+						movies<i class="fa fa-angle-down" aria-hidden="true"></i>
+						</a>
+						<ul class="dropdown-menu level1">
+							<li><a href="moviegridfw">movie grid full width</a></li>
+							<li class="it-last"><a href="moviesingle">Movie single</a></li>
+						</ul>
+					</li>
+
+					<li class="dropdown first">
+						<a class="btn btn-default dropdown-toggle lv1" data-toggle="dropdown" data-hover="dropdown">
+						community <i class="fa fa-angle-down" aria-hidden="true"></i>
+						</a>
+						<ul class="dropdown-menu level1">
+							<li><a href="userfavoritegrid">user favorite grid</a></li>
+							<li><a href="userprofile">user profile</a></li>
+						</ul>
+					</li>
+				</ul>
+				<!-- <ul class="nav navbar-nav flex-child-menu menu-right">              
+					<li class="loginLink"><a href="#">LOG In</a></li>
+					<li class="btn signupLink"><a href="#">sign up</a></li>
+				</ul> -->
+			</div>
+		<!-- /.navbar-collapse -->
+	    </nav>
+	<!-- search form -->
+        <form class="form" action="" method="get" >
+        {{form}}
+            <div class="top-search">
+                <!-- <input name="sch" placeholder="Search something.."></input> -->
+                <input type="text" id="product" name="sch" placeholder="Search for a movie, that you are looking for">
+            </div>
+        </form>
+	</div>
+</header>
+<!-- END | Header -->
+
+<div class="hero common-hero">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="hero-ct">
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="page-single">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12 col-sm-12 col-xs-12">
+				<div class="topbar-filter fw">
+					<p>Found <span>{{ count }}</span> in total</p>
+                </div>
+				<div class="flex-wrap-movielist mv-grid-fw">
+                    {% block content %}
+                    {% for imdb,poster,rating,names in data %}
+                    <div class="movie-item-style-2 movie-item-style-1">
+                        <img src={{poster}} alt="">
+                        <div class="hvr-inner">
+                            <a  href="/moviesingle/{{imdb}}"> Read more <i class="ion-android-arrow-dropright"></i> </a>
+                        </div>
+                        <div class="mv-item-infor">
+                            <h6><a href="#">{{names}}</a></h6>
+                            <p class="rate"><i class="ion-android-star"></i><span>{{rating}}</span> /10</p>
+                        </div>
+                    </div>	
+                    {% endfor %}
+                    {% endblock %}										
+				</div>	
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- footer v2 section-->
+{% include 'add-ones/footer.html' %}
+<!-- end of footer v2 section-->
+
+{% include 'add-ones/alljs.html' %}
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script>
+	$(function () {
+		$("#product").autocomplete({
+			source: '{% url 'autocomplete' %}',
+			autoFocus:true,
+			delay:200,
+			}
+			
+		);
+	});
+</script>
+</body>
+</html>

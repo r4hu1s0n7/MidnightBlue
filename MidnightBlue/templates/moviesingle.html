@@ -1,0 +1,313 @@
+{% load static %}
+{% load customFilter %}
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+{% include 'add-ones/headtag.html' %}
+<body>
+<!--preloading-->
+<div id="preloader">
+    <img class="logo" src="{% static 'images/logo1.svg' %}" alt="" width="119" height="58">
+    <div id="status">
+        <span></span>
+        <span></span>
+    </div>
+</div>
+<!--end of preloading-->
+
+<!--login form popup-->
+{% include 'add-ones/login.html' %}
+<!--end of login form popup-->
+
+<!--signup form popup-->
+{% include 'add-ones/signup.html' %}
+<!--end of signup form popup-->
+
+<!-- BEGIN | Header -->
+{% include 'add-ones/navbar.html' %}
+<!-- END | Header -->
+
+<div class="hero mv-single-hero">
+	<div class="container">
+		<div class="row">
+		</div>
+	</div>
+</div>
+{% for movie in data %}
+<div class="page-single movie-single movie_single">
+	<div class="container">
+		<div class="row ipad-width2">
+			<div class="col-md-4 col-sm-12 col-xs-12">
+				<div class="movie-img" style="top: 0px">
+					<img
+						src={{ movie.poster }}
+						alt=""
+					>
+					<div class="movie-btn">	
+						<!-- <div class="btn-transform transform-vertical red">
+							<div><a href="#" class="item item-1 redbtn"> <i class="ion-play"></i> Watch Trailer</a></div>
+							<div><a href="https://www.youtube.com/embed/o-0hcF97wy0" class="item item-2 redbtn fancybox-media hvr-grow"><i class="ion-play"></i></a></div>
+						</div>
+						<div class="btn-transform transform-vertical">
+							<div><a href="#" class="item item-1 yellowbtn"> <i class="ion-card"></i> Buy ticket</a></div>
+							<div><a href="#" class="item item-2 yellowbtn"><i class="ion-card"></i></a></div>
+						</div> -->
+					</div>
+				</div>
+			</div>
+			<div class="col-md-8 col-sm-12 col-xs-12">
+				<div class="movie-single-ct main-content">
+					<h1 class="bd-hd">{{ movie.original_title }}<span> &nbsp; {{movie.release_date | trimDate}}</span></h1>
+					<!-- <div class="social-btn">
+						<a href="#" class="parent-btn"><i class="ion-heart"></i> Add to Favorite</a>
+						<div class="hover-bnt">
+							<a href="#" class="parent-btn"><i class="ion-android-share-alt"></i>share</a>
+							<div class="hvr-item">
+								<a href="#" class="hvr-grow"><i class="ion-social-facebook"></i></a>
+								<a href="#" class="hvr-grow"><i class="ion-social-twitter"></i></a>
+								<a href="#" class="hvr-grow"><i class="ion-social-googleplus"></i></a>
+								<a href="#" class="hvr-grow"><i class="ion-social-youtube"></i></a>
+							</div>
+						</div>		
+					</div> -->
+					<div class="movie-rate">
+						<div class="rate">
+							<i class="ion-android-star"></i>
+							<p><span>{{movie.vote_average}}</span> /10<br>
+								<!-- <span class="rv">56 Reviews</span> -->
+							</p>
+						</div>
+						<!-- <div class="rate-star">
+							<p>Rate This Movie:  </p>
+							<i class="ion-ios-star"></i>
+							<i class="ion-ios-star"></i>
+							<i class="ion-ios-star"></i>
+							<i class="ion-ios-star"></i>
+							<i class="ion-ios-star"></i>
+							<i class="ion-ios-star"></i>
+							<i class="ion-ios-star"></i>
+							<i class="ion-ios-star"></i>
+							<i class="ion-ios-star-outline"></i>
+						</div> -->
+					</div>
+					<div class="movie-tabs">
+						<div class="tabs">
+							<ul class="tab-links tabs-mv">
+								<li class="active"><a href="#overview">Overview</a></li>
+								<li><a href="#moviesrelated"> Related Movies</a></li>                        
+							</ul>
+						    <div class="tab-content">
+						        <div id="overview" class="tab active">
+						            <div class="row">
+						            	<div class="col-md-8 col-sm-12 col-xs-12">
+						            		<p>{{movie.overview}}</p>
+						            		<!-- <div class="title-hd-sm">
+												<h4>Director</h4>
+											</div> -->
+											<div class="title-hd-sm">
+												<h4>cast</h4>
+												<a href="#" class="time">Full Cast & Crew  <i class="ion-ios-arrow-right"></i></a>
+											</div>
+											<!-- movie cast -->
+											<div class="mvcast-item">											
+												<div class="cast-it">
+													<div class="cast-left">
+														<img src="{% static 'images/uploads/cast1.jpg' %}" alt="">
+														<a href="#">Robert Downey Jr.</a>
+													</div>
+													<p>...  Robert Downey Jr.</p>
+												</div>
+												<div class="cast-it">
+													<div class="cast-left">
+														<img src="{% static 'images/uploads/cast2.jpg' %}" alt="">
+														<a href="#">Chris Hemsworth</a>
+													</div>
+													<p>...  Thor</p>
+												</div>
+												<div class="cast-it">
+													<div class="cast-left">
+														<img src="{% static 'images/uploads/cast3.jpg' %}" alt="">
+														<a href="#">Mark Ruffalo</a>
+													</div>
+													<p>...  Bruce Banner/ Hulk</p>
+												</div>
+												<div class="cast-it">
+													<div class="cast-left">
+														<img src="{% static 'images/uploads/cast4.jpg ' %}" alt="">
+														<a href="#">Chris Evans</a>
+													</div>
+													<p>...  Steve Rogers/ Captain America</p>
+												</div>
+												<div class="cast-it">
+													<div class="cast-left">
+														<img src="{% static 'images/uploads/cast5.jpg' %}" alt="">
+														<a href="#">Scarlett Johansson</a>
+													</div>
+													<p>...  Natasha Romanoff/ Black Widow</p>
+												</div>
+												<div class="cast-it">
+													<div class="cast-left">
+														<img src="{% static 'images/uploads/cast6.jpg' %}" alt="">
+														<a href="#">Jeremy Renner</a>
+													</div>
+													<p>...  Clint Barton/ Hawkeye</p>
+												</div>
+												<div class="cast-it">
+													<div class="cast-left">
+														<img src="{% static 'images/uploads/cast7.jpg' %}" alt="">
+														<a href="#">James Spader</a>
+													</div>
+													<p>...  Ultron</p>
+												</div>
+												<div class="cast-it">
+													<div class="cast-left">
+														<img src="{% static 'images/uploads/cast9.jpg' %}" alt="">
+														<a href="#">Don Cheadle</a>
+													</div>
+													<p>...  James Rhodes/ War Machine</p>
+												</div>
+											</div>
+											<!-- <div class="title-hd-sm">
+												<h4>User reviews</h4>
+												<a href="#" class="time">See All 56 Reviews <i class="ion-ios-arrow-right"></i></a>
+											</div> -->
+											<!-- movie user review -->
+											<!--<div class="mv-user-review-item">
+												<h3>Best Marvel movie in my opinion</h3>
+												<div class="no-star">
+													<i class="ion-android-star"></i>
+													<i class="ion-android-star"></i>
+													<i class="ion-android-star"></i>
+													<i class="ion-android-star"></i>
+													<i class="ion-android-star"></i>
+													<i class="ion-android-star"></i>
+													<i class="ion-android-star"></i>
+													<i class="ion-android-star"></i>
+													<i class="ion-android-star"></i>
+													<i class="ion-android-star last"></i>
+												</div>
+												<p class="time">
+													17 December 2016 by <a href="#"> hawaiipierson</a>
+												</p>
+												<p>This is by far one of my favorite movies from the MCU. The introduction of new Characters both good and bad also makes the movie more exciting. giving the characters more of a back story can also help audiences relate more to different characters better, and it connects a bond between the audience and actors or characters. Having seen the movie three times does not bother me here as it is as thrilling and exciting every time I am watching it. In other words, the movie is by far better than previous movies (and I do love everything Marvel), the plotting is splendid (they really do out do themselves in each film, there are no problems watching it more than once.</p>
+											</div> -->
+						            	</div>
+						            	<div class="col-md-4 col-xs-12 col-sm-12">
+						            		<div class="sb-it">
+						            			<h6>Director: </h6>
+						            			<p><a href="#">{{ movie.director }}</a></p>
+						            		</div>
+						            		<div class="sb-it">
+						            			<h6>Stars: </h6>
+						            			<p><a href="#">{{movie.cast}}</a></p>
+						            		</div>
+						            		<div class="sb-it">
+						            			<h6>Genres:</h6>
+						            			<p><a href="#">{{ movie.genres }}</a></p>
+						            		</div>
+						            		<div class="sb-it">
+						            			<h6>Release Date:</h6>
+						            			<p>{{ movie.release_date }}</p>
+						            		</div>
+						            		<div class="sb-it">
+						            			<h6>Run Time:</h6>
+						            			<p>{{ movie.runtime | trim }} min</p>
+						            		</div>
+						            		<!-- <div class="ads">
+												<img src="{% static 'images/uploads/ads1.png' %}" alt="">
+											</div> -->
+						            	</div>
+						            </div>
+						        </div>
+					       	 	<div id="moviesrelated" class="tab">
+					       	 		<div class="row">
+					       	 			<h3>Related Movies To</h3>
+					       	 			<h2>{{movie.title}}</h2>
+					       	 			<div class="topbar-filter">
+											<p>Found <span>12 movies</span> in total</p>
+										</div>
+										<div class="movie-item-style-2">
+											<img src="{% static 'images/uploads/mv1.jpg' %}" alt="">
+											<div class="mv-item-infor">
+												<h6><a href="#">oblivion <span>(2012)</span></a></h6>
+												<p class="rate"><i class="ion-android-star"></i><span>8.1</span> /10</p>
+												<p class="describe">Earth's mightiest heroes must come together and learn to fight as a team if they are to stop the mischievous Loki and his alien army from enslaving humanity...</p>
+												<p class="run-time"> Run Time: 2h21’    .     <span>MMPA: PG-13 </span>    .     <span>Release: 1 May 2015</span></p>
+												<p>Director: <a href="#">Joss Whedon</a></p>
+												<p>Stars: <a href="#">Robert Downey Jr.,</a> <a href="#">Chris Evans,</a> <a href="#">  Chris Hemsworth</a></p>
+											</div>
+										</div>
+										<div class="movie-item-style-2">
+											<img src="{% static 'images/uploads/mv2.jpg' %}" alt="">
+											<div class="mv-item-infor">
+												<h6><a href="#">into the wild <span>(2014)</span></a></h6>
+												<p class="rate"><i class="ion-android-star"></i><span>7.8</span> /10</p>
+												<p class="describe">As Steve Rogers struggles to embrace his role in the modern world, he teams up with a fellow Avenger and S.H.I.E.L.D agent, Black Widow, to battle a new threat...</p>
+												<p class="run-time"> Run Time: 2h21’    .     <span>MMPA: PG-13 </span>    .     <span>Release: 1 May 2015</span></p>
+												<p>Director: <a href="#">Anthony Russo,</a><a href="#">Joe Russo</a></p>
+												<p>Stars: <a href="#">Chris Evans,</a> <a href="#">Samuel L. Jackson,</a> <a href="#">  Scarlett Johansson</a></p>
+											</div>
+										</div>
+										<div class="movie-item-style-2">
+											<img src="{% static 'images/uploads/mv3.jpg' %}" alt="">
+											<div class="mv-item-infor">
+												<h6><a href="#">blade runner  <span>(2015)</span></a></h6>
+												<p class="rate"><i class="ion-android-star"></i><span>7.3</span> /10</p>
+												<p class="describe">Armed with a super-suit with the astonishing ability to shrink in scale but increase in strength, cat burglar Scott Lang must embrace his inner hero and help...</p>
+												<p class="run-time"> Run Time: 2h21’    .     <span>MMPA: PG-13 </span>    .     <span>Release: 1 May 2015</span></p>
+												<p>Director: <a href="#">Peyton Reed</a></p>
+												<p>Stars: <a href="#">Paul Rudd,</a> <a href="#"> Michael Douglas</a></p>
+											</div>
+										</div>
+										<div class="movie-item-style-2">
+											<img src="{% static 'images/uploads/mv4.jpg' %}" alt="">
+											<div class="mv-item-infor">
+												<h6><a href="#">Mulholland pride<span> (2013)  </span></a></h6>
+												<p class="rate"><i class="ion-android-star"></i><span>7.2</span> /10</p>
+												<p class="describe">When Tony Stark's world is torn apart by a formidable terrorist called the Mandarin, he starts an odyssey of rebuilding and retribution.</p>
+												<p class="run-time"> Run Time: 2h21’    .     <span>MMPA: PG-13 </span>    .     <span>Release: 1 May 2015</span></p>
+												<p>Director: <a href="#">Shane Black</a></p>
+												<p>Stars: <a href="#">Robert Downey Jr., </a> <a href="#">  Guy Pearce,</a><a href="#">Don Cheadle</a></p>
+											</div>
+										</div>
+										<div class="movie-item-style-2">
+											<img src="{% static 'images/uploads/mv5.jpg' %}" alt="">
+											<div class="mv-item-infor">
+												<h6><a href="#">skyfall: evil of boss<span> (2013)  </span></a></h6>
+												<p class="rate"><i class="ion-android-star"></i><span>7.0</span> /10</p>
+												<p class="describe">When Tony Stark's world is torn apart by a formidable terrorist called the Mandarin, he starts an odyssey of rebuilding and retribution.</p>
+												<p class="run-time"> Run Time: 2h21’    .     <span>MMPA: PG-13 </span>    .     <span>Release: 1 May 2015</span></p>
+												<p>Director: <a href="#">Alan Taylor</a></p>
+												<p>Stars: <a href="#">Chris Hemsworth,  </a> <a href="#">  Natalie Portman,</a><a href="#">Tom Hiddleston</a></p>
+											</div>
+										</div>
+										<div class="topbar-filter">
+											<label>Movies per page:</label>
+											<select>
+												<option value="range">5 Movies</option>
+												<option value="saab">10 Movies</option>
+											</select>
+											<div class="pagination2">
+												<span>Page 1 of 2:</span>
+												<a class="active" href="#">1</a>
+												<a href="#">2</a>
+												<a href="#"><i class="ion-arrow-right-b"></i></a>
+											</div>
+										</div>
+					       	 		</div>
+					       	 	</div>
+						    </div>
+						</div>
+					</div>
+				</div>
+			</div>
+			{% endfor %}
+		</div>
+	</div>
+</div>
+<!-- footer section-->
+{% include 'add-ones/footer.html' %}
+<!-- end of footer section-->
+
+{% include 'add-ones/alljs.html' %}
+</body>
+</html>

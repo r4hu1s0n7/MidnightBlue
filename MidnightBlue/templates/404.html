@@ -1,0 +1,42 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+{% include 'headtag.html' %}
+<body>
+<!--preloading-->
+<div id="preloader">
+    <img class="logo" src="{% static 'images/logo1.svg' %}" alt="" width="119" height="58">
+    <div id="status">
+        <span></span>
+        <span></span>
+    </div>
+</div>
+<!--end of preloading-->
+
+<!--login form popup-->
+{% include 'login.html' %}
+<!--end of login form popup-->
+
+<!--signup form popup-->
+{% include 'signup.html' %}
+<!--end of signup form popup-->
+
+<div class="page-single-2">
+	<div class="container">
+		<div class="row">
+			<div class="middle-content">
+				<a href="index"><img class="md-logo" src="images/logo1.svg" alt="" width="119" height="58"></a>
+				<img src="images/uploads/err-img.png" alt="">
+				<h1>Page not found</h1>
+				<a href="index" class="redbtn">go home</a>
+			</div>
+		</div>
+	</div>
+</div>
+<script src="js/jquery.js"></script>
+<script src="js/plugins.js"></script>
+<script src="js/plugins2.js"></script>
+<script src="js/custom.js"></script>
+</body>
+
+</html>
