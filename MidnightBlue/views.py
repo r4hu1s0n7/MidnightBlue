@@ -46,8 +46,9 @@ def autocomplete(request):
         titles = list()
         for product in qs:
             titles.append(product.original_title)
+        # titles = [product.title for product in qs]
         return JsonResponse(titles, safe=False)
-    return render(request, 'search.html')
+    return render(request, 'test_search.html')
 
 def moviegridfw(request):
 	return render(request, 'moviegridfw.html')
