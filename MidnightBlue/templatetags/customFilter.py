@@ -45,7 +45,6 @@ def seperateGenre(value, arg):
         result = value.split(' ', 6)
         result = "<span class='green'><a href='#'>" + result[5] + "</a></span>"
         return mark_safe(result)
-        hey this is me
     else:
         result = "<span></span>"
         return mark_safe(result)
