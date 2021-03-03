@@ -1,8 +1,7 @@
 from django.shortcuts import render
-from numpy import tile
 from MidnightBlue.models import *
 from django_pandas.io import read_frame
-import json
+from datetime import date
 from django.http import JsonResponse
 from .forms import *
 
@@ -12,14 +11,11 @@ def index(request):
 
 	trending_movies = ['Interstellar', 'The Notebook', 'Django Unchained', 'Midnight in Paris', 'The Dark Knight', 'Before Sunrise', 'The Grand Budapest Hotel', 'The Prestige']
 	trending_row = get_movie(trending_movies)
-	
-	latest_movies = ['Interstellar', 'The Notebook', 'Django Unchained', 'Midnight in Paris', 'The Dark Knight', 'Before Sunrise', 'The Grand Budapest Hotel', 'The Prestige']
-	latest_row = get_movie(latest_movies)
-	
-	editors_movie = ['Interstellar', 'The Notebook', 'Django Unchained', 'Midnight in Paris', 'The Dark Knight', 'Before Sunrise', 'The Grand Budapest Hotel', 'The Prestige']
+		
+	editors_movie = ['Me Before You', 'The Notebook', 'Interstellar', 'Shutter Island', 'The Dark Knight', 'The Shawshank Redemption', 'The Imitation Game', 'The Pursuit of Happyness']
 	editor_row = get_movie(editors_movie)
 
-	context = {'trending':trending_row,'latest':latest_row,'editor':editor_row,'main':mainslidebar_row}
+	context = {'trending':trending_row,'editor':editor_row,'main':mainslidebar_row,'year':date.today().year}
 	
 	return render(request, 'index.html', context)
 
@@ -68,7 +64,7 @@ def moviegridfw(request):
 
 def movieinfo(request,id):
 	qs = MovieDB.objects.filter(imdb_id__icontains=id)
-	context = {'data':qs}
+	context = {'data':qs, 'year':date.today().year}
 	return render(request, 'moviesingle.html', context)
 
 def profile(request):
@@ -91,5 +87,5 @@ def searchMovie(request):
 	except Exception as e:
 		print("e=",e)
 	z = len(names)
-	context = {'data':zip(imdb,poster,rating,names),'k':k,'count':z}
+	context = {'data':zip(imdb,poster,rating,names),'year':date.today().year,'count':z}
 	return render(request,'search.html',context)

@@ -3,9 +3,11 @@
 	<div class="row">
 		<div class="flex-parent-ft">
 			<div class="flex-child-ft item1">
-				 <a href="index.html"><img class="logo" src="{% static 'images/logo1.svg' %}" alt="" width="119" height="58"></a>
-				 <p>Gujarat, India</p>
-				<p>Call us: <a href="#">+91 9876543210</a></p>
+				<a href="index.html"><img class="logo" src="{% static 'images/logo1.svg' %}" alt="" width="119" height="58"></a>
+				<p>Gujarat, India</p>
+				<p>Call us: <a href="tel:">+91 9876543210</a></p>
+				<p><a href="/about">About</a></p>
+				<p><a href="/contact">Contact Us</a></p>
 			</div>
 			<div class="flex-child-ft">
 				<h4>Resources</h4>
@@ -17,7 +19,7 @@
 		</div>
 		<div class="ft-copyright">
 			<div class="ft-left">
-				<p>© 2020 Midnight Blue. All Rights Reserved.</p>
+				<p>© {{year}} Midnight Blue. All Rights Reserved.</p>
 			</div>
 			<div class="backtotop">
 				<p><a href="#" id="back-to-top">Back to top  <i class="ion-ios-arrow-thin-up"></i></a></p>

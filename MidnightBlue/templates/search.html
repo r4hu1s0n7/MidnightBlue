@@ -141,10 +141,9 @@
 	$(function () {
 		$("#product").autocomplete({
 			source: '{% url 'autocomplete' %}',
-			autoFocus:true,
-			delay:200,
+			delay:300,
+			minLength:4,
 			}
-			
 		);
 	});
 </script>

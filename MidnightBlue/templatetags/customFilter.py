@@ -45,6 +45,35 @@ def seperateGenre(value, arg):
         result = value.split(' ', 6)
         result = "<span class='green'><a href='#'>" + result[5] + "</a></span>"
         return mark_safe(result)
+
+    else:
+        result = "<span></span>"
+        return mark_safe(result)
+
+@register.filter(is_safe=True)
+def seperateKeywords(value, arg):
+    res = len(value.split(' '))
+    argu = int(arg)
+    if argu<=res and arg=="1":
+        result = value.split(' ', 1)
+        return result[0]
+        
+    elif argu<=res and arg=="2":
+        result = value.split(' ', 2)
+        return result[1]
+    
+    elif argu<=res and arg=="3":
+        result = value.split(' ', 3)
+        return result[2]
+    
+    elif argu<=res and arg=="4":
+        result = value.split(' ', 4)
+        return result[3]
+        
+    elif argu<=res and arg=="5":
+        result = value.split(' ', 5)
+        return result[4]
+    
     else:
         result = "<span></span>"
         return mark_safe(result)
