@@ -1,0 +1,77 @@
+def searchMovie(request):
+	z=0
+	print("-----")
+	qs = Movie.objects.all()
+	d = read_frame(qs)
+	k = request.GET.get('sch')
+	# keys = ["interstellar","inception"]
+	# print(type(k1))	
+	# print(type(k))	
+	# names,poster,rating = [],[],[]
+	# for k in keys:
+	# 	try:
+	# 		x = list(d[d['name'].str.contains('avatar',case=False,na=False)]['name'].values)
+			
+	# 		names.__add__(x)
+	# 		print(2)
+	# 		poster.__add__(list(d[d['name'].str.contains('avatar',case=False,na=False)]['poster'].values))
+	# 		rating.__add__(list(d[d['name'].str.contains('avatar',case=False,na=False)]['vote_average'].values))
+	# 		print(names,poster,rating)
+	# 		print(3)
+	# 	except Exception as e:
+	# 		print(e)
+	# print(k)
+	listnames,listposter,listrating = [],[],[]
+	print(1)
+	names,poster,rating = [],[],[]
+	try:
+		names = list(d[d['name'].str.contains(k,case=False,na=False)]['name'].values)
+		print(2)
+		poster = list(d[d['name'].str.contains(k,case=False,na=False)]['poster'].values)
+		rating = list(d[d['name'].str.contains(k,case=False,na=False)]['vote_average'].values)
+
+		print(3)
+	except Exception as e:
+		print(e)
+	z = len(names)
+	print(z)
+	print(names)
+	context = {'data':zip(names,poster,rating),'k':k,'count':z}
+	return render(request,'search.html',context)
+
+
+
+	# try:
+	# 	names = list(d[d['cast'].str.contains(k,case=False,na=False)]['name'].values)
+	# 	poster = list(d[d['cast'].str.contains(k,case=False,na=False)]['poster'].values)
+	# 	rating = list(d[d['cast'].str.contains(k,case=False,na=False)]['vote_average'].values)
+	# 	listnames.append(names)
+	# 	listposter.append(poster) 
+	# 	listrating.append(rating)
+		
+	# except Exception as e:
+	# 	print(e)
+	# try:
+	# 	names = list(d[d['director'].str.contains(k,case=False,na=False)]['name'].values)
+	# 	poster = list(d[d['director'].str.contains(k,case=False,na=False)]['poster'].values)
+	# 	rating = list(d[d['director'].str.contains(k,case=False,na=False)]['vote_average'].values)
+	# 	listnames.append(names)
+	# 	listposter.append(poster) 
+	# 	listrating.append(rating)
+		
+	# except Exception as e:
+	# 	print(e)
+	# try:
+	# 	names = list(d[d['keywords'].str.contains(k,case=False,na=False)]['name'].values)
+	# 	poster = list(d[d['keywords'].str.contains(k,case=False,na=False)]['poster'].values)
+	# 	rating = list(d[d['keywords'].str.contains(k,case=False,na=False)]['vote_average'].values)
+	# 	listnames.append(names)
+	# 	listposter.append(poster) 
+	# 	listrating.append(rating)
+		
+	# except Exception as e:
+	# 	print(e)
+	
+	# z = len(listnames)
+	# print(z)
+	# return render(request,'search.html', {'names':listnames,'cast':listposter,'rating':listrating,'count':z,'k':k})
