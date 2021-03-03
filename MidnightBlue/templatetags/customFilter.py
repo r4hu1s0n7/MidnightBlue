@@ -38,14 +38,14 @@ def seperateGenre(value, arg):
         
     elif argu<=res and arg=="5":
         result = value.split(' ', 5)
-        result = "<span class='black'><a href='#'>" + result[4] + "</a></span>"
+        result = "<span class='blue'><a href='#'>" + result[4] + "</a></span>"
         return mark_safe(result)
     
     elif argu<=res and arg=="6":
         result = value.split(' ', 6)
-        result = "<span class='red'><a href='#'>" + result[5] + "</a></span>"
+        result = "<span class='green'><a href='#'>" + result[5] + "</a></span>"
         return mark_safe(result)
     
     else:
         result = "<span></span>"
-        return result
+        return mark_safe(result)
