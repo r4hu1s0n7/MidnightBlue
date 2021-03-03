@@ -3,7 +3,14 @@
 <html lang="en" class="no-js">
 	<head>
 		<style>
-			.ui-autocomplete { max-height: 200px; overflow-y: scroll; overflow-x: hidden;}
+			.ui-menu{
+				background-color: #233a50;
+			}
+			.ui-autocomplete { 
+				max-height: 300px;
+				overflow-y: scroll;
+				overflow-x: hidden;
+			}
 		</style>
 		<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 	</head>
@@ -18,14 +25,6 @@
     </div>
 </div>
 <!--end of preloading-->
-
-<!--login form popup-->
-<!-- {% include 'add-ones/login.html' %} -->
-<!--end of login form popup-->
-
-<!--signup form popup-->
-<!-- {% include 'add-ones/signup.html' %} -->
-<!--end of signup form popup-->
 
 <!-- BEGIN | Header -->
 <header class="ht-header full-width-hd">
@@ -81,7 +80,7 @@
 		<!-- /.navbar-collapse -->
 	    </nav>
 	<!-- search form -->
-        <form class="form" action="" method="get" >
+        <form class="form" id="searchForm" action="" method="get" >
         {{form}}
             <div class="top-search">
                 <!-- <input name="sch" placeholder="Search something.."></input> -->
@@ -143,6 +142,10 @@
 			source: '{% url 'autocomplete' %}',
 			delay:300,
 			minLength:4,
+			select: function(event, ui) {
+				$("#product").val(ui.item.label);
+				$("#searchForm").submit();
+			}
 			}
 		);
 	});

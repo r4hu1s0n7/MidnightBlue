@@ -40,24 +40,14 @@ def get_main_movie(keys):
 def about(request):
 	return render(request, 'about.html')
 
-def search(request):
-	if 'term' in request.GET:
-		qs = MovieDB.objects.filter(title__icontains=request.GET.get('term'))
-		titles = list()
-		for items in qs:
-			titles.append(items.title)
-		return JsonResponse(titles, safe=False)
-	return render(request, 'search.html')
-
 def autocomplete(request):
     if 'term' in request.GET:
         qs = MovieDB.objects.filter(title__icontains=request.GET.get('term'))
         titles = list()
         for product in qs:
             titles.append(product.original_title)
-        # titles = [product.title for product in qs]
         return JsonResponse(titles, safe=False)
-    return render(request, 'test_search.html')
+    return render(request, 'search.html')
 
 def moviegridfw(request):
 	return render(request, 'moviegridfw.html')

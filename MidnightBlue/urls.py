@@ -11,5 +11,4 @@ urlpatterns = [
 	path('userprofile', views.profile, name="profile"),
 	path('userfavoritegrid', views.userfav, name="userfav"),
     path('about', views.about, name="about"),
-	path('testsearch', views.autocomplete, name='autocomplete'),
 ]
