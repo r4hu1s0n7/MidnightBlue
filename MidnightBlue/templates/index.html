@@ -110,18 +110,18 @@
                       <div class="row">
                         <div class="slick-multiItem2">
                           {% block content %}
-                          {% for imdb,poster,rating,names in trending %}
+                          {% for movie in trending %}
                           <div class="slide-it">
                             <div class="movie-item">
                               <div class="mv-img">
-                                <img src="{{poster}}" alt="">
+                                <img src={{movie.poster}} alt="">
                               </div>
                               <div class="hvr-inner">
-                                <a  href="/moviesingle/{{imdb}}"> Read more <i class="ion-android-arrow-dropright"></i> </a>
+                                <a  href="/moviesingle/{{movie.imdb_id}}"> Read more <i class="ion-android-arrow-dropright"></i> </a>
                               </div>
                               <div class="title-in">
-                                <h6><a href="#">{{names}}</a></h6>
-                                <p><i class="ion-android-star"></i><span>{{rating}}</span> /10</p>
+                                <h6><a href="#">{{movie.original_title}}</a></h6>
+                                <p><i class="ion-android-star"></i><span>{{movie.vote_average}}</span> /10</p>
                               </div>
                             </div>
                           </div>
@@ -145,18 +145,18 @@
                   <div id="tab1-h2" class="tab active">
                       <div class="row">
                         <div class="slick-multiItem2">
-                          {% for imdb,poster,rating,names in editor %}
+                          {% for movie in editor %}
                           <div class="slide-it">
                             <div class="movie-item">
                               <div class="mv-img">
-                                <img src="{{poster}}" alt="">
+                                <img src="{{movie.poster}}" alt="">
                               </div>
                               <div class="hvr-inner">
-                                <a  href="/moviesingle/{{imdb}}"> Read more <i class="ion-android-arrow-dropright"></i> </a>
+                                <a  href="/moviesingle/{{movie.imdb_id}}"> Read more <i class="ion-android-arrow-dropright"></i> </a>
                               </div>
                               <div class="title-in">
-                                <h6><a href="#">{{names}}</a></h6>
-                                <p><i class="ion-android-star"></i><span>{{rating}}</span> /10</p>
+                                <h6><a href="#">{{movie.original_title}}</a></h6>
+                                <p><i class="ion-android-star"></i><span>{{movie.vote_average}}</span> /10</p>
                               </div>
                             </div>
                           </div>

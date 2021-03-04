@@ -3,9 +3,6 @@
 <html lang="en" class="no-js">
 	<head>
 		<style>
-			.ui-menu{
-				background-color: #233a50;
-			}
 			.ui-autocomplete { 
 				max-height: 300px;
 				overflow-y: scroll;
@@ -60,7 +57,6 @@
         <form class="form" id="searchForm" action="" method="get" >
         {{form}}
             <div class="top-search">
-                <!-- <input name="sch" placeholder="Search something.."></input> -->
                 <input type="text" id="product" name="sch" placeholder="Search for a movie, that you are looking for">
             </div>
         </form>
@@ -82,20 +78,28 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-md-12 col-sm-12 col-xs-12">
+				{% if count == 0 and k %}
+				<div class="topbar-filter fw">
+					<p>Sorry! No Matching Found <a href="/about"><span> &nbsp; Missing Movie? Write Us here.</span></a> </p>
+				</div>
+				{% elif count > 0 %}
 				<div class="topbar-filter fw">
 					<p>Found <span>{{ count }}</span> in total</p>
-                </div>
+				</div>
+				{% else %}
+					<div></div>
+				{% endif %}
 				<div class="flex-wrap-movielist mv-grid-fw">
                     {% block content %}
-                    {% for imdb,poster,rating,names in data %}
+                    {% for movie in data %}
                     <div class="movie-item-style-2 movie-item-style-1">
-                        <img src={{poster}} alt="">
+                        <img src={{movie.poster}} alt="">
                         <div class="hvr-inner">
-                            <a  href="/moviesingle/{{imdb}}"> Read more <i class="ion-android-arrow-dropright"></i> </a>
+                            <a  href="/moviesingle/{{movie.imdb_id}}"> Read more <i class="ion-android-arrow-dropright"></i> </a>
                         </div>
                         <div class="mv-item-infor">
-                            <h6><a href="#">{{names}}</a></h6>
-                            <p class="rate"><i class="ion-android-star"></i><span>{{rating}}</span> /10</p>
+                            <h6><a href="#">{{movie.original_title}}</a></h6>
+                            <p class="rate"><i class="ion-android-star"></i><span>{{movie.vote_average}}</span> /10</p>
                         </div>
                     </div>	
                     {% endfor %}

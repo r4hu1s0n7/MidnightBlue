@@ -20,18 +20,8 @@ def index(request):
 	return render(request, 'index.html', context)
 
 def get_movie(keys):
-	qs = MovieDB.objects.all()
-	d = read_frame(qs)
-	imdb,names,poster,rating = [],[],[],[]
-	for k in keys:
-		try:
-			imdb.append(d[d['original_title'].str.contains(k,case=False,na=False)]['imdb_id'].values[0])
-			poster.append(d[d['original_title'].str.contains(k,case=False,na=False)]['poster'].values[0])
-			rating.append(d[d['original_title'].str.contains(k,case=False,na=False)]['vote_average'].values[0])
-			names.append(d[d['original_title'].str.contains(k,case=False,na=False)]['original_title'].values[0])
-		except:
-			print(k)
-	return zip(imdb,poster,rating,names)
+	qs = MovieDB.objects.filter(original_title__in=keys)
+	return qs
 
 def get_main_movie(keys):
 	qs = MovieDB.objects.filter(original_title=keys)
@@ -42,11 +32,10 @@ def about(request):
 
 def autocomplete(request):
     if 'term' in request.GET:
-        qs = MovieDB.objects.filter(title__icontains=request.GET.get('term'))
+        qs = MovieDB.objects.filter(title__icontains=request.GET.get('term')) | MovieDB.objects.filter(genres__icontains=request.GET.get('term')) | MovieDB.objects.filter(cast__icontains=request.GET.get('term')) | MovieDB.objects.filter(director__icontains=request.GET.get('term')) | MovieDB.objects.filter(keywords__icontains=request.GET.get('term'))
         titles = list()
         for product in qs:
             titles.append(product.original_title)
-        # titles = [product.title for product in qs]
         return JsonResponse(titles, safe=False)
     return render(request, 'test_search.html')
 
@@ -62,21 +51,14 @@ def profile(request):
 	return render(request, 'userprofile.html')
 
 def userfav(request):
+	queryset = MovieDB.objects.filter(first_name__startswith='R') | MovieDB.objects.filter(last_name__startswith='D')
 	return render(request, 'userfavoritegrid.html')
 
 def searchMovie(request):
 	z=0
-	qs = MovieDB.objects.all()
-	d = read_frame(qs)
+	context={'year':date.today().year}
 	k = request.GET.get('sch')
-	imdb,names,poster,rating = [],[],[],[]
-	try:
-		imdb = list(d[d['original_title'].str.contains(k,case=False,na=False)]['imdb_id'].values)
-		poster = list(d[d['original_title'].str.contains(k,case=False,na=False)]['poster'].values)
-		rating = list(d[d['original_title'].str.contains(k,case=False,na=False)]['vote_average'].values)
-		names = list(d[d['original_title'].str.contains(k,case=False,na=False)]['original_title'].values)
-	except Exception as e:
-		print("e=",e)
-	z = len(names)
-	context = {'data':zip(imdb,poster,rating,names),'year':date.today().year,'count':z}
+	if k:
+		qs = MovieDB.objects.filter(title__icontains=k) | MovieDB.objects.filter(genres__icontains=k) | MovieDB.objects.filter(cast__icontains=k) | MovieDB.objects.filter(director__icontains=k) | MovieDB.objects.filter(keywords__icontains=k)
+		context = {'data':qs,'year':date.today().year,'count':qs.count(), 'k':k}
 	return render(request,'search.html',context)
