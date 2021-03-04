@@ -1,6 +1,5 @@
 from django.shortcuts import render
 from MidnightBlue.models import *
-from django_pandas.io import read_frame
 from datetime import date
 from django.http import JsonResponse
 from .forms import *
