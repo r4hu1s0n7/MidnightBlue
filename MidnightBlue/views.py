@@ -1,3 +1,4 @@
+from django.http.response import Http404
 from django.shortcuts import render
 from MidnightBlue.models import *
 from datetime import date
@@ -5,8 +6,8 @@ from django.http import JsonResponse
 from .forms import *
 
 def index(request):
-	mainslidebar_movies = 'Avatar'
-	mainslidebar_row = get_main_movie(mainslidebar_movies)
+	mainslidebar_movies = ['Avatar','Me Before You', 'The Notebook']
+	mainslidebar_row = get_movie(mainslidebar_movies)
 
 	trending_movies = ['Interstellar', 'The Notebook', 'Django Unchained', 'Midnight in Paris', 'The Dark Knight', 'Before Sunrise', 'The Grand Budapest Hotel', 'The Prestige']
 	trending_row = get_movie(trending_movies)
@@ -20,10 +21,6 @@ def index(request):
 
 def get_movie(keys):
 	qs = MovieDB.objects.filter(original_title__in=keys)
-	return qs
-
-def get_main_movie(keys):
-	qs = MovieDB.objects.filter(original_title=keys)
 	return qs
 
 def about(request):
@@ -43,6 +40,8 @@ def moviegridfw(request):
 
 def movieinfo(request,id):
 	qs = MovieDB.objects.filter(imdb_id__icontains=id)
+	if not qs:
+		raise Http404()
 	context = {'data':qs, 'year':date.today().year}
 	return render(request, 'moviesingle.html', context)
 
@@ -61,3 +60,9 @@ def searchMovie(request):
 		qs = MovieDB.objects.filter(title__icontains=k) | MovieDB.objects.filter(genres__icontains=k) | MovieDB.objects.filter(cast__icontains=k) | MovieDB.objects.filter(director__icontains=k) | MovieDB.objects.filter(keywords__icontains=k)
 		context = {'data':qs,'year':date.today().year,'count':qs.count(), 'k':k}
 	return render(request,'search.html',context)
+
+def error_404(request, exception):
+	return render(request,'404.html')
+
+def error_500(request, *args, **argv):
+	return render(request,'500.html')

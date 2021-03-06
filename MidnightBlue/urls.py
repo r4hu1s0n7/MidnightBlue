@@ -1,7 +1,9 @@
-from django.contrib import admin
 from django.urls import path
 from django.conf.urls import url
 from . import views
+
+handler404 = 'MidnightBlue.views.error_404'
+handler500 = 'MidnightBlue.views.error_500'
 
 urlpatterns = [
 	path('', views.index, name="index"),

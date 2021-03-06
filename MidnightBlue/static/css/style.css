@@ -7834,7 +7834,7 @@ header .navbar-default .flex-parent {
 @media (min-width: 992px) {
   header .navbar-default .flex-parent {
     display: flex !important;
-    jutify-content: flex-start;
+    justify-content: flex-start;
   }
 }
 header .navbar-default .flex-parent .menu-left {
@@ -7955,9 +7955,9 @@ header .top-search select {
 header .top-search input::-webkit-input-placeholder {
   color: #abb7c4;
 }
-header .top-search input {
+/* header .top-search input { */
   /* background: url('../images/uploads/topsearch.png') no-repeat right 20px center; */
-}
+/* } */
 header #nav-icon1 {
   width: 15px;
   height: 15px;

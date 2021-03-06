@@ -35,8 +35,8 @@
     <div class="slider sliderv2">
       <div class="container">
         <div class="row">
-          {% for movie in main %}
           <div class="slider-single-item">
+          {% for movie in main %}
             <div class="movie-item">
               <div class="row">
                 <div class="col-md-8 col-sm-12 col-xs-12">
@@ -61,7 +61,7 @@
                         <i class="ion-android-star">&nbsp;</i><span>{{movie.vote_average}}</span>&nbsp;/10
                       </p>
                       <ul class="mv-infor">
-                        <li>Run Time: {{movie.runtime | trim}} min</li>
+                        <li style="font-size: large;">Run Time: {{movie.runtime | trim}} min</li>
                         <li>Release: {{movie.release_date}}</li>
                       </ul>
                     </div>
@@ -88,9 +88,9 @@
                 </div>
               </div>
             </div>
+          {% endfor %}
           </div>
         </div>
-      {% endfor %}
       </div>
     </div>
 

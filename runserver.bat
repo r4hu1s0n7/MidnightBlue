@@ -1,1 +1,1 @@
-start cmd /k py manage.py runserver
+start cmd /k py manage.py runserver --insecure
