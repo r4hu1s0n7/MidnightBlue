@@ -2,6 +2,8 @@
 <!DOCTYPE html>
 <html lang="en" class="no-js">
 	<head>
+		{% include 'add-ones/headtag.html' %}
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 		<style>
 			.ui-autocomplete { 
 				max-height: 300px;
@@ -11,7 +13,6 @@
 		</style>
 		<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 	</head>
-{% include 'add-ones/headtag.html' %}
 <body>
 <!--preloading-->
 <div id="preloader">
@@ -48,16 +49,16 @@
 					<!-- <li><a href="index">Home</a></li> -->
 
 					<li><a href="/search">Search</a></li>
-					<li><a href="/search">Recommendation</a></li>
+					<li><a href="/recommendation">Recommendation</a></li>
 				</ul>
 			</div>
 		<!-- /.navbar-collapse -->
 	</nav>
 	<!-- search form -->
-        <form class="form" id="searchForm" action="" method="get" >
+        <form id="searchForm" action="" method="get" >
         {{form}}
-            <div class="top-search">
-                <input type="text" id="product" name="sch" placeholder="Search for a movie, that you are looking for">
+            <div class="form-group">
+                <input class="form-control" type="text" id="product" name="sch" placeholder="Search for a movie, that you are looking for" required>
             </div>
         </form>
 	</div>
@@ -120,7 +121,7 @@
 <script>
 	$(function () {
 		$("#product").autocomplete({
-			source: '{% url 'autocomplete' %}',
+			source: '{% url 'search' %}',
 			delay:300,
 			minLength:4,
 			select: function(event, ui) {

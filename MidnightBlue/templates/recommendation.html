@@ -1,0 +1,135 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+	<head>
+		{% include 'add-ones/headtag.html' %}
+		<style>
+			.ui-autocomplete { 
+				max-height: 300px;
+				overflow-y: scroll;
+				overflow-x: hidden;
+			}
+		</style>
+		<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+	</head>
+<body>
+<!--preloading-->
+<div id="preloader">
+    <img class="logo" src="{% static 'images/logo1.svg' %}" alt="" width="119" height="58">
+    <div id="status">
+        <span></span>
+        <span></span>
+    </div>
+</div>
+<!--end of preloading-->
+
+<!-- BEGIN | Header -->
+<header class="ht-header full-width-hd">
+	<div class="row">
+		<nav id="mainNav" class="navbar navbar-default navbar-custom">
+			<!-- Brand and toggle get grouped for better mobile display -->
+			<div class="navbar-header logo">
+			    <div class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+				    <span class="sr-only">Toggle navigation</span>
+				    <div id="nav-icon1">
+						<span></span>
+						<span></span>
+						<span></span>
+					</div>
+			    </div>
+			    <a href="/"><img class="logo" src="{% static 'images/logo1.svg' %}" alt="" width="119" height="58"></a>
+		    </div>
+			<!-- Collect the nav links, forms, and other content for toggling -->
+			<div class="collapse navbar-collapse flex-parent" id="bs-example-navbar-collapse-1">
+				<ul class="nav navbar-nav flex-child-menu menu-left">
+					<li class="hidden">
+						<a href="#page-top"></a>
+					</li>
+					<!-- <li><a href="index">Home</a></li> -->
+
+					<li><a href="/search">Search</a></li>
+                    <li><a href="/recommendation">Recommendation</a></li>
+				</ul>
+			</div>
+		<!-- /.navbar-collapse -->
+	</nav>
+	<!-- search form -->
+        <form class="form" id="searchForm" action="" method="get" >
+        {{form}}
+            <div class="top-search">
+                <input type="text" id="product" name="sch" placeholder="Search for a movie, that you are looking for">
+            </div>
+        </form>
+	</div>
+</header>
+<!-- END | Header -->
+
+<div class="hero common-hero">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="hero-ct">
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="page-single">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12 col-sm-12 col-xs-12">
+				{% if count == 0 and k %}
+				<div class="topbar-filter fw">
+					<p>Sorry! No Matching Found <a href="/about"><span> &nbsp; Missing Movie? Write Us here.</span></a> </p>
+				</div>
+				{% elif count > 0 %}
+				<div class="topbar-filter fw">
+					<p>Found <span>{{ count }}</span> in total</p>
+				</div>
+				{% else %}
+					<div></div>
+				{% endif %}
+				<div class="flex-wrap-movielist mv-grid-fw">
+                    {% block content %}
+                    {% for names, poster, imdb, rating in data %}
+                    <div class="movie-item-style-2 movie-item-style-1">
+                        <img src={{poster}} alt="">
+                        <div class="hvr-inner">
+                            <a  href="/moviesingle/{{imdb}}"> Read more <i class="ion-android-arrow-dropright"></i> </a>
+                        </div>
+                        <div class="mv-item-infor">
+                            <h6><a href="#">{{names}}</a></h6>
+                            <p class="rate"><i class="ion-android-star"></i><span>{{rating}}</span> /10</p>
+                        </div>
+                    </div>	
+                    {% endfor %}
+                    {% endblock %}										
+				</div>	
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- footer v2 section-->
+{% include 'add-ones/footer.html' %}
+<!-- end of footer v2 section-->
+
+{% include 'add-ones/alljs.html' %}
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script>
+	$(function () {
+		$("#product").autocomplete({
+			source: '{% url 'search' %}',
+			delay:300,
+			minLength:4,
+			select: function(event, ui) {
+				$("#product").val(ui.item.label);
+				$("#searchForm").submit();
+			}
+			}
+		);
+	});
+</script>
+</body>
+</html>

@@ -2,8 +2,10 @@
 {% load customFilter %}
 <!DOCTYPE html>
 <html lang="en" class="no-js">
-  {% include 'add-ones/headtag.html' %}
-  <body>
+	<head>
+		{% include 'add-ones/headtag.html' %}
+	</head>
+  	<body>
     <!--preloading-->
     <div id="preloader">
       <img
@@ -19,14 +21,6 @@
       </div>
     </div>
     <!--end of preloading-->
-
-    <!--login form popup-->
-    {% include 'add-ones/login.html' %}
-    <!--end of login form popup-->
-
-    <!--signup form popup-->
-    {% include 'add-ones/signup.html' %}
-    <!--end of signup form popup-->
 
     <!-- BEGIN | Header -->
     {% include 'add-ones/navbar.html' %}
