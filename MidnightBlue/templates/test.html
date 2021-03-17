@@ -1,0 +1,28 @@
+{% load static %}
+<html>
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="{% static 'jquery.tagsinput-revisited.js' %}"></script>
+        <link rel="stylesheet" href="{% static 'jquery.tagsinput-revisited.css' %}">
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    </head>
+    <body>
+        <input id="example" name="example" type="text">
+        <script>
+            $('#example').tagsInput({
+                'autocomplete': {
+                    source: '{% url 'search' %}',
+                    delay:200,
+                    minLength:4,
+                    select: function(event, ui) {
+                        $("#example").val(ui.item.label);
+                        // $("#searchForm").submit();
+                    }
+                },
+                unique:true,
+                limit:3,
+            });
+        </script>
+    </body>
+</html>

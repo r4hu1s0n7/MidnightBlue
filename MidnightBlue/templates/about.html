@@ -4,6 +4,20 @@
 <html lang="en" class="no-js">
 	<head>
 		{% include 'add-ones/headtag.html' %}
+		<style>
+			.ui-autocomplete { 
+				max-height: 300px;
+				overflow-y: scroll;
+				overflow-x: hidden;
+			}
+			.inactiveLink {
+				pointer-events: none;
+				cursor: default;
+			}
+			.sidebar .sb-title {
+				font-size: 23px;
+			}
+		</style>
 	</head>
 	<body>
     <!--preloading-->
@@ -43,56 +57,53 @@
 				<div class="col-md-12 col-sm-12 col-xs-12">
 					<div class="sidebar" style="margin-left: 0px;">
 						<div class="searh-form">
-							<h4 class="sb-title">Search for movie</h4>
+							<h1 class="sb-title">Suggest Movie</h1>
 							<form class="form-style-1" action="#">
 								<div class="row">
 									<div class="col-md-12 form-it">
-										<label>Movie name</label>
-										<input type="text" placeholder="Enter keywords">
+										<label>Name</label>
+										<input type="text" placeholder="This will show up on the site">
 									</div>
 									<div class="col-md-12 form-it">
-										<label>Genres & Subgenres</label>
-										<div class="group-ip">
-											<select
-												name="skills" multiple="" class="ui fluid dropdown">
-												<option value="">Enter to filter genres</option>
-												<option value="Action1">Action 1</option>
-												<option value="Action2">Action 2</option>
-												<option value="Action3">Action 3</option>
-												<option value="Action4">Action 4</option>
-												<option value="Action5">Action 5</option>
-											</select>
-										</div>	
+										<label>E-mail</label>
+										<input type="email" placeholder="This will be the medium of the communication">
 									</div>
 									<div class="col-md-12 form-it">
-										<label>Rating Range</label>
-										<select>
-										  <option value="range">-- Select the rating range below --</option>
-										  <option value="saab">-- Select the rating range below --</option>
-										</select>
+										<label>Movies</label>
+										<input type="text" name="skills" id="example">
 									</div>
 									<div class="col-md-12 form-it">
-										<label>Release Year</label>
-										<div class="row">
-											<div class="col-md-6">
-												<select>
-												  <option value="range">From</option>
-												  <option value="number">10</option>
-												</select>
-											</div>
-											<div class="col-md-6">
-												<select>
-												  <option value="range">To</option>
-												  <option value="number">20</option>
-												</select>
-											</div>
-										</div>
+										<label>Any Note</label>
+										<input type="text" placeholder="Anything you'll like to be noted">
 									</div>
 									<div class="col-md-12 ">
 										<input class="submit" type="submit" value="submit">
 									</div>
 								</div>
 							</form>
+						</div>
+						<div class="searh-form">
+							<h4 class="sb-title">Developers</h4>
+							<div class="row">
+								<div class="col-md-6">
+									<div class="ceb-item-style-2">
+										<div class="ceb-infor">
+											<h2><a class="inactiveLink" href="#">Rahul Soni</a></h2>
+											<span>Founder</span><br>
+											<span><a href="mailto:rahuldsoni2001@gmail.com">Get connected here</a></span>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="ceb-item-style-2">
+										<div class="ceb-infor">
+											<h2><a class="inactiveLink" href="#">Rupen Chitroda</a></h2>
+											<span>Co-Founder</span><br>
+											<span><a href="mailto:rupschitroda16@gmail.com">Get connected here</a></span>
+										</div>
+									</div>
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -105,5 +116,27 @@
     <!-- end of footer v2 section-->
 
     {% include 'add-ones/alljs.html' %}
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="{% static 'jquery.tagsinput-revisited.js' %}"></script>
+	<link rel="stylesheet" href="{% static 'jquery.tagsinput-revisited.css' %}">
+	<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	<script>
+		$('#example').tagsInput({
+			'autocomplete': {
+				source: '{% url 'search' %}',
+				delay:200,
+				minLength:4,
+				select: function(event, ui) {
+					$("#example").val(ui.item.label);
+				}
+			},
+			unique:true,
+			hide:true,
+			delimiter:',',
+			limit:8,
+			placeholder:'Search and Add your suggested movie here',
+		});
+	</script>
   </body>
 </html>

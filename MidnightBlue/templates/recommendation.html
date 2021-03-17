@@ -121,14 +121,17 @@
 	$(function () {
 		$("#product").autocomplete({
 			source: '{% url 'search' %}',
-			delay:300,
+			delay:200,
 			minLength:4,
 			select: function(event, ui) {
 				$("#product").val(ui.item.label);
 				$("#searchForm").submit();
-			}
-			}
-		);
+				if (ui.item == null) {
+				event.currentTarget.value = ''; 
+				event.currentTarget.focus();
+				}
+			},
+		});
 	});
 </script>
 </body>

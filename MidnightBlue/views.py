@@ -8,6 +8,9 @@ from sklearn.metrics.pairwise import cosine_similarity
 from django.http import JsonResponse
 from .forms import *
 
+def test(request):
+	return render(request, 'test.html')
+
 def index(request):
 	mainslidebar_movies = ['Avatar','Me Before You', 'The Notebook']
 	mainslidebar_row = get_movie(mainslidebar_movies)

@@ -21,3 +21,12 @@ class MovieDB(models.Model):
 
     class Meta:
         db_table = "MovieDB"
+
+class UserInfo(models.Model):
+    nme = models.CharField(max_length=100)
+    email = models.EmailField()
+    movielist = models.CharField(max_length=1000)
+    feedback = models.CharField(max_length=1000)
+
+    class Meta:
+        db_table = "UserInfo"

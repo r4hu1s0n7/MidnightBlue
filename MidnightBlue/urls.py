@@ -13,5 +13,7 @@ urlpatterns = [
 	path('userprofile', views.profile, name="profile"),
 	path('userfavoritegrid', views.userfav, name="userfav"),
     path('about', views.about, name="about"),
-	path('recommendation', views.recommendation)
+	path('recommendation', views.recommendation),
+	path('test', views.test),
+
 ]
