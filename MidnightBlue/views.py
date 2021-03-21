@@ -2,6 +2,7 @@ from django.http.response import Http404
 from django.shortcuts import render
 from MidnightBlue.models import *
 from datetime import date
+from .models import *
 from django_pandas.io import read_frame
 from sklearn.feature_extraction.text import CountVectorizer 
 from sklearn.metrics.pairwise import cosine_similarity
@@ -29,8 +30,20 @@ def get_movie(keys):
 	qs = MovieDB.objects.filter(original_title__in=keys)
 	return qs
 
-def about(request):
-	return render(request, 'about.html')
+def suggest(request):
+	if request.method == "POST":
+		if request.POST.get('name') and request.POST.get('mail') and request.POST.get('movies') and request.POST.get('note'):
+			obj = UserInfo()
+			obj.name = request.POST.get('name')
+			obj.email = request.POST.get('mail')
+			obj.movielist = request.POST.get('movies')
+			obj.note = request.POST.get('note')
+			today = date.today()
+			obj.date = today.strftime("%Y-%m-%d")
+			obj.save()
+
+
+	return render(request, 'suggest.html')
 
 def movieinfo(request,id):
 	qs = MovieDB.objects.filter(imdb_id__icontains=id)

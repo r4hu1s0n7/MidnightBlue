@@ -23,10 +23,11 @@ class MovieDB(models.Model):
         db_table = "MovieDB"
 
 class UserInfo(models.Model):
-    nme = models.CharField(max_length=100)
+    name = models.CharField(max_length=100)
     email = models.EmailField()
     movielist = models.CharField(max_length=1000)
-    feedback = models.CharField(max_length=1000)
+    note = models.CharField(max_length=1000)
+    date = models.DateField()
 
     class Meta:
-        db_table = "UserInfo"
+        db_table = "suggest"
