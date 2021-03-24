@@ -1,0 +1,4 @@
+Django==3.1.5
+django_pandas==0.6.4
+PyMySQL==1.0.2
+scikit_learn==0.24.1
