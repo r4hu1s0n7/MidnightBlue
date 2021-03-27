@@ -25,9 +25,9 @@ SECRET_KEY = 'sd1ewyn!vm)$yp$nu$v95^b@vd+dz*tzq2l@h@ujp%5(3mwl3a'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 # Application definition
 
@@ -82,14 +82,27 @@ WSGI_APPLICATION = 'MovieRecommendation.wsgi.application'
 #     }
 # }
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'midnightblue',
+#         'USER': 'root',
+#         'PASSWORD': 'root',
+#         'HOST': '127.0.0.1',
+#         'PORT': '3306',
+#     }
+# }
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'midnightblue',
-        'USER': 'root',
-        'PASSWORD': 'root',
-        'HOST': '127.0.0.1',
+        'USER': 'midnightblue@midnightblue',
+        'PASSWORD': 'Christopher@123',
+        'HOST': 'midnightblue.mysql.database.azure.com',
         'PORT': '3306',
+        'OPTIONS': {
+            'ssl': {'ssl-ca': '/var/www/html/BaltimoreCyberTrustRoot.crt.pem'}
+        }
     }
 }
 
