@@ -1,12 +1,9 @@
 # Welcome to MidnightBlue
 
-We are still building this project. 
 
+Homepage and Recommendations below.
 
-Recommendations are working but we need to refactor this for optimisation of repeated searches and also have to clear the Flow.
-
-
-You can see Homepage and Recommendations below.
+Optimization and code refactoring pending
 
 
 ### Home Page
