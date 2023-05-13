@@ -10,9 +10,8 @@ Optimization and code refactoring pending
 
 
 
-![Home Page](https://drive.google.com/file/d/1aI0xoDp9Lw5rngcXvasbU8QLsGmlIVu8/view)
 
-![Home Page](https://github.com/r4hu1s0n7/MidnightBlue/assets/40057302/75f52809-3580-4afd-9d7d-71ebac31681d)
+![Home  Page](https://github.com/r4hu1s0n7/MidnightBlue/assets/40057302/75f52809-3580-4afd-9d7d-71ebac31681d)
 
 
 -----------------------------------------------------------------------------------------------------------------------------------
