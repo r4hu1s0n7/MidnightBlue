@@ -23,4 +23,4 @@ Optimization and code refactoring pending
 
 
 
-![Recommendations](https://github.com/r4hu1s0n7/MidnightBlue/blob/main/screencapture-127-0-0-1-8000-recommendation-2021-07-06-09_53_20.png)
+![](https://github.com/r4hu1s0n7/MidnightBlue/assets/40057302/f1397e09-f3a3-49ca-b729-881d69af4a62)
