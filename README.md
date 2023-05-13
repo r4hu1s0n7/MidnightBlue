@@ -10,8 +10,8 @@ Optimization and code refactoring pending
 
 
 
-![Home Page](https://github.com/r4hu1s0n7/MidnightBlue/blob/main/screencapture-127-0-0-1-8000-2021-07-06-09_50_37.png)
 
+![Home  Page](https://github.com/r4hu1s0n7/MidnightBlue/assets/40057302/75f52809-3580-4afd-9d7d-71ebac31681d)
 
 
 -----------------------------------------------------------------------------------------------------------------------------------
@@ -23,4 +23,4 @@ Optimization and code refactoring pending
 
 
 
-![Recommendations](https://github.com/r4hu1s0n7/MidnightBlue/blob/main/screencapture-127-0-0-1-8000-recommendation-2021-07-06-09_53_20.png)
+![Recommendations](https://github.com/r4hu1s0n7/MidnightBlue/assets/40057302/f1397e09-f3a3-49ca-b729-881d69af4a62)
