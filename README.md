@@ -23,4 +23,4 @@ Optimization and code refactoring pending
 
 
 
-![](https://github.com/r4hu1s0n7/MidnightBlue/assets/40057302/f1397e09-f3a3-49ca-b729-881d69af4a62)
+![Recommendations](https://github.com/r4hu1s0n7/MidnightBlue/assets/40057302/f1397e09-f3a3-49ca-b729-881d69af4a62)
